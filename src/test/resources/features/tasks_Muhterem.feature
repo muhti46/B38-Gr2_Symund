@@ -6,7 +6,7 @@ Feature: Tasks Module Functionality
   Background:User is already in the log in page
     Given the user is on the login page
     When the user logged in with username as "Employee62" and password as "Employee123"
-    And the user is on the "Tasks" module page
+    And the user clicks "Tasks" menu
 
   @task
   Scenario: Create a new list of tasks
