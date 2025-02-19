@@ -29,6 +29,7 @@ Feature: Calendar Module Functionality
   Scenario: User can create a new event under the calendar module and see
   it on the related day through the Monthly calendar view
      # Given user is on the calendar page
+
     When  User clicks + New event button
     And   user creats event and saves it
     Then  user sees it on the related day through the Monthly calendar view
