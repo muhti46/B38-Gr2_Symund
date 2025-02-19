@@ -35,7 +35,7 @@ public class Files_StepDefinitions {
         filesPage.addButtonClick();
         // filesPage.uploadFile.click();
         BrowserUtils.sleep(5);
-        String path = "C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt";;
+        String path = "C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt";
         filesPage.uploadFile.sendKeys(" C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt");
      //   filesPage.clickUploadFile(path);
         // Select select = new Select(filesPage.allOptionsFromAddButton);

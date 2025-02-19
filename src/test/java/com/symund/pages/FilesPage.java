@@ -1,7 +1,7 @@
 package com.symund.pages;
 
 import com.symund.utilities.Driver;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,8 +12,8 @@ public class FilesPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(xpath = "//a[@aria-label='Files']")
-    public WebElement FilesButton;
+//    @FindBy(xpath = "//a[@aria-label='Files']")
+//    public WebElement FilesButton;
 
 //    @FindBy(xpath = "//span[@class='icon icon-add']")
 //public WebElement addButton;
