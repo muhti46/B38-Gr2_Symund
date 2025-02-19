@@ -11,11 +11,12 @@ public abstract class BasePage {
     }
 
     /**
-     * Navigates to given module page on the App     *
+     * Navigates to given module page on the App 
      * @param moduleName String
      */
     public void clickMenuByText(String moduleName){
      WebElement menuElement= Driver.getDriver().findElement(By.xpath("(//li[@data-id='"+moduleName.toLowerCase()+"'])[1]"));
+
      menuElement.click();
     }
     }
