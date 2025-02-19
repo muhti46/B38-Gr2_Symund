@@ -3,16 +3,14 @@ package com.symund.step_definitions;
 
 import com.symund.pages.FilesPage;
 import com.symund.utilities.BrowserUtils;
-import com.symund.utilities.Driver;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.Select;
 
-import javax.xml.xpath.XPath;
-import java.awt.*;
+
+
 
 
 public class Files_StepDefinitions {
