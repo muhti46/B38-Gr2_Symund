@@ -30,9 +30,9 @@ public class FilesPage {
    @FindBy(xpath = "//span[.='some-file']")
    public WebElement lastUploadFile;
 
-    public void addButtonClick(){
-        addButton.click();
-    }
+//    public void addButtonClick(){
+//        addButton.click();
+//    }
 
 
 

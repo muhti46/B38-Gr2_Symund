@@ -3,8 +3,11 @@ Feature:Upload/Edit/Delete File Module Functionality
   As a user, I should be able to upload a file, move or delete any
   selected file under the Files module
 
-  Background:
+  Background:user is already on the login page
     Given user is on the login page
+    When the user logged in with username as "Employee52" and password as "Employee123"
+    Then the user clicks "file" menu
+
   @US-JIRA-ID_tasks_AC01-TC01
   Scenario:User can upload a file
     Given user is on the Files page

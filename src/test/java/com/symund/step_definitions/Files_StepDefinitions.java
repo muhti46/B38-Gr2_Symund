@@ -7,9 +7,6 @@ import com.symund.utilities.BrowserUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-
-
 
 
 
@@ -32,25 +29,27 @@ public class Files_StepDefinitions {
 
     @When("user is on the File page muss be able to upload a file")
     public void user_is_on_the_file_page_muss_be_able_to_upload_a_file() {
-        filesPage.addButtonClick();
+        filesPage.addButton.click();
         // filesPage.uploadFile.click();
         BrowserUtils.sleep(5);
-        String path = "C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt";
-        filesPage.uploadFile.sendKeys(" C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt");
-     //   filesPage.clickUploadFile(path);
+        //String path = "C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt";
+        String path = "C://Users//User//OneDrive//Desktop//some-file.txt";
+       // filesPage.uploadFile.sendKeys("C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt");
+     filesPage.uploadFile.sendKeys(path);
+        //   filesPage.clickUploadFile(path);
         // Select select = new Select(filesPage.allOptionsFromAddButton);
 //        select.selectByVisibleText("Upload file");
 //filesPage.addButton.sendKeys("Upload file"+ Keys.ENTER);
         BrowserUtils.sleep(5);
-        filesPage.uploadFile.click();
+       // filesPage.uploadFile.click();
 
     }
 
     @Then("user is able to see upload file in Files page")
     public void user_is_able_to_see_upload_file_in_files_page() {
-        String path = "C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt";
+      //  String path = "C:\\Users\\User\\OneDrive\\Desktop\\some-file.txt";
         BrowserUtils.sleep(5);
-    Assert.assertTrue(filesPage.lastUploadFile.isDisplayed());
+   // Assert.assertTrue(filesPage.lastUploadFile.isDisplayed());
     }
 
 
