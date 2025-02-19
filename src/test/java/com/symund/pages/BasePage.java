@@ -11,7 +11,8 @@ public abstract class BasePage {
     }
 
     public void clickMenuByText(String text){
-     WebElement menuElement= Driver.getDriver().findElement(By.xpath("(//li[@data-id='"+text.toLowerCase()+"'])[1]"));
+     WebElement menuElement= Driver.getDriver().findElement
+             (By.xpath("(//li[@data-id='"+text.toLowerCase()+"'])[1]"));
      menuElement.click();
     }
     }
