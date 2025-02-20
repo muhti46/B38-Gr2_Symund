@@ -1,5 +1,4 @@
 package com.symund.step_definitions;
-
 import com.symund.pages.TasksPage;
 import com.symund.utilities.BrowserUtils;
 import io.cucumber.java.en.And;
@@ -9,9 +8,7 @@ import org.openqa.selenium.Keys;
 
 public class TasksStepDefs {
 
-
 TasksPage tasksPage=new TasksPage();
-
 
     @When("the user clicks on {string}")
     public void theUserClicksOn(String navigationButton) {
@@ -32,5 +29,3 @@ TasksPage tasksPage=new TasksPage();
         tasksPage.displayCreatedTaskListName(createdTaskListName);
     }
 
-
-}

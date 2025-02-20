@@ -1,3 +1,4 @@
+
 Feature: Tasks Module Functionality
 
   As a user, I want to manage tasks effectively by creating task lists, adding tasks,
@@ -13,7 +14,6 @@ Feature: Tasks Module Functionality
     When the user clicks on "Add List..."
     And enters "Planing group study" as the name of the new task list and hits the enter
     Then a new task list named "Planing group study" should be created and displayed in the sidebar
-
 
   Scenario: Create a new task
     Given the user has selected the "Symund" task list
@@ -31,8 +31,18 @@ Feature: Tasks Module Functionality
     When the user clicks on the star icon next to "click cucumber report in target file"
     Then "click cucumber report in target file" should appear in the list of important tasks
 
-
   Scenario: View number of uncompleted tasks
     Given there are uncompleted tasks in the "Writing step definitions" task list
     When the user navigates to the "Current" tab
     Then they should see a number indicating the total count of uncompleted tasks next to "Current"
+
+
+
+
+
+
+
+
+
+
+

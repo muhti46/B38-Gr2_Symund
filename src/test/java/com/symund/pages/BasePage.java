@@ -14,20 +14,17 @@ public abstract class BasePage {
     @FindBy(xpath = "//div[@class='logo logo-icon']")
     public  WebElement logoIcon;
 
-
-    /**This method click menu elements into navigation menu
-     * @param text
+    /**
+     * Navigates to given module page on the App 
+     * @param moduleName String
      */
-    public void clickMenuByText(String text){
-     WebElement menuElement= Driver.getDriver().findElement
-             (By.xpath("(//li[@data-id='"+text.toLowerCase()+"'])[1]"));
+    public void clickMenuByText(String moduleName){
+     WebElement menuElement= Driver.getDriver().findElement(By.xpath("(//li[@data-id='"+moduleName.toLowerCase()+"'])[1]"));
+
      menuElement.click();
     }
     public void logoClick(){
     logoIcon.click();
     }
-
-
-
     }
 
