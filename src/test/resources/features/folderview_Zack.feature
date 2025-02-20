@@ -23,3 +23,7 @@ Feature: Folder View Functionality
     When user clicks on the select all checkbox
     Then verify user should see total numbers of files-folders as expected
 
+  @B38GR2-152_folderview_AC04-TC02
+  Scenario: Verify all check boxes should be selected once select all checkbox is selected
+    When user clicks on the select all checkbox
+    Then verify user should see all checkboxes as selected
