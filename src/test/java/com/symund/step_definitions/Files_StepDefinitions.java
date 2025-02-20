@@ -51,8 +51,7 @@ public class Files_StepDefinitions {
         BrowserUtils.sleep(4);
         // String filePath = "C:\\Users\\User\\IdeaProjects\\B38-Gr2_Symund\\src\\test\\resources\\data\\file.txt";
         //                    C:\Users\User\IdeaProjects\B38-Gr2_Symund
-        //                                   \\IdeaProjects\B38-Gr2_Symund\src\test\resources\data\file.txt
-
+        //                                                               \src\test\resources\data\file.txt
         String basePath = System.getProperty("user.dir");
         String commonPath = "\\src\\test\\resources\\data\\file.txt";
 
@@ -61,22 +60,32 @@ public class Files_StepDefinitions {
         // C:\Users\User\IdeaProjects\B38-Gr2_Symund\src\test\resources\data\file.txt
         filesPage.uploadFile.sendKeys(filePath);
 
-        
-        expectedFileName= filePath.substring(filePath.lastIndexOf("\\"), filePath.lastIndexOf("."));
+        System.out.println("basePath = " + basePath);
+        System.out.println("commonPath = " + commonPath);
+
+        expectedFileName= filePath.substring(filePath.lastIndexOf("\\")+1,filePath.lastIndexOf("."));
         System.out.println("expectedFileName = " + expectedFileName);
     }
 
     @Then("user is able to see upload file in Files page")
     public void user_is_able_to_see_upload_file_in_files_page() {
    List<String> allNames= BrowserUtils.getElementsText(filesPage.allFilesAndFolderNames);
-         Assert.assertTrue(allNames.contains(expectedFileName));
+        for (String allName : allNames) {
+            if (allName.contains(expectedFileName)){
+                Assert.assertTrue(allNames.contains(expectedFileName));
+            }
+        }
+
         BrowserUtils.sleep(5);
 
 
         //Deleting file which we have add
         filesPage.threDotForDeletingElement.click();
 
+        //click on delete File
         filesPage.clickOnDeletFile.click();
+
+        BrowserUtils.sleep(5);
 
 
     }

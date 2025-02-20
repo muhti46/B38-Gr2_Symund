@@ -22,8 +22,7 @@ public class FilesPage extends BasePage{
     public WebElement addButton;
 
 
-  // @FindBy(xpath = "//input[@type='submit']")
-   @FindBy(xpath = "//input[@value='Confirm']")
+   @FindBy(xpath = "//input[@type='file']")
     public WebElement uploadFile;
 
    @FindBy(xpath = "//tr//span[@class='innernametext']")
