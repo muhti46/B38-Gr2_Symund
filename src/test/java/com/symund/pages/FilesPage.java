@@ -2,7 +2,7 @@ package com.symund.pages;
 
 import com.symund.utilities.Driver;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -32,21 +32,12 @@ public class FilesPage extends BasePage{
    @FindBy(xpath = "//tbody[@id='fileList'][1]//tr[3]/td[2]//span[@class='icon icon-more']")
     public WebElement threDotForDeletingElement;
 
+
    @FindBy(xpath = "//a[@data-action='Delete']")
    public WebElement clickOnDeletFile;
 
    @FindBy(xpath = "//tbody[@id='fileList'][1]//tr//a[@class='action action-menu permanent']")
    public List<WebElement> threeDotForAllFileAndFolder;
-
-//   public void uploadFilleOn(String path){
-//       uploadFile.click();
-//       uploadFile.sendKeys(path);
-//   }
-
-//    public void addButtonClick(){
-//        addButton.click();
-//    }
-
 
 
 }

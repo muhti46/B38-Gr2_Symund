@@ -9,9 +9,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 
@@ -53,11 +50,12 @@ public class Files_StepDefinitions {
     public void user_is_on_the_file_page_muss_be_able_to_upload_a_file() {
         BrowserUtils.sleep(4);
         // String filePath = "C:\\Users\\User\\IdeaProjects\\B38-Gr2_Symund\\src\\test\\resources\\data\\file.txt";
-        //                    C:\Users\User\IdeaProjects\B38-Gr2_Symund\\
+        //                    C:\Users\User\IdeaProjects\B38-Gr2_Symund
         //                                   \\IdeaProjects\B38-Gr2_Symund\src\test\resources\data\file.txt
 
         String basePath = System.getProperty("user.dir");
         String commonPath = "\\src\\test\\resources\\data\\file.txt";
+
         String filePath = basePath + commonPath;
         System.out.println("filePath = " + filePath);
         // C:\Users\User\IdeaProjects\B38-Gr2_Symund\src\test\resources\data\file.txt
