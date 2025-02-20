@@ -16,12 +16,10 @@ public class Files_StepDefinitions {
     FilesPage filesPage = new FilesPage();
     LoginPage loginPage = new LoginPage();
 
-
     @Given("user is on the login page")
     public void userIsOnTheLoginPage() {
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("https://qa.symund.com/"));
     }
-
 
     @Then("the user is able to login username as {string} and password as {string}")
     public void theUserIsAbleToLoginUsernameAsAndPasswordAs(String username, String password) {
