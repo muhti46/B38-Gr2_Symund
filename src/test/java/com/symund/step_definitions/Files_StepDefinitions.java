@@ -74,9 +74,7 @@ public class Files_StepDefinitions {
                 Assert.assertTrue(allNames.contains(expectedFileName));
             }
         }
-
         BrowserUtils.sleep(5);
-
 
         //Deleting file which we have add
         filesPage.threDotForDeletingElement.click();
@@ -85,9 +83,36 @@ public class Files_StepDefinitions {
         filesPage.clickOnDeletFile.click();
 
         BrowserUtils.sleep(5);
-
-
     }
 
 
+
+
+    @When("user is able to click on New Folder")
+    public void userIsAbleToClickOnNewFolder() {
+        filesPage.newFolderlink.click();
+    }
+    @Then("user is able to see name of folder in that page")
+    public void userIsAbleToSeeNameOfFolderInThatPage() {
+
+    }
+    @Then("user is able provide the name for folder")
+    public void userIsAbleProvideTheNameForFolder() {
+    }
+
+    @When("user is able to click on three dots")
+    public void userIsAbleToClickOnThreeDots() {
+    }
+
+    @Then("user is able to delete any item")
+    public void userIsAbleToDeleteAnyItem() {
+    }
+
+    @Given("user is able to see total number of files")
+    public void userIsAbleToSeeTotalNumberOfFiles() {
+    }
+
+    @Then("user is able to see total numer of folders")
+    public void userIsAbleToSeeTotalNumerOfFolders() {
+    }
 }

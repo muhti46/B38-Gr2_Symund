@@ -6,18 +6,16 @@ Feature:Upload/Edit/Delete File Module Functionality
     Given user is on the login page
     Then the user is able to login username as "Employee52" and password as "Employee123"
     Given the user clicks "Files" menu
-
+    Given user is on the Files page
 
   @US-JIRA-ID_tasks_AC01-TC01
   Scenario:User can upload a file
-    Given user is on the Files page
     Then user is able to click on + icon
     When user is on the File page muss be able to upload a file
     Then user is able to see upload file in Files page
 
   @US-JIRA-ID_tasks_AC02-TC01
   Scenario: User can create a new folder
-    Given user is on the Files page
     When user is able to click on + icon
     When user is able to click on New Folder
     Then user is able provide the name for folder
@@ -25,7 +23,6 @@ Feature:Upload/Edit/Delete File Module Functionality
 
   @US-JIRA-ID_tasks_AC03-TC01
   Scenario: User can delete any selected item from its three dots menu
-    Given user is on the Files page
     When user is able to click on three dots
     Then user is able to delete any item
 
