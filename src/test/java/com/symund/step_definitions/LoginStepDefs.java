@@ -1,10 +1,11 @@
 package com.symund.step_definitions;
 
 import com.symund.pages.LoginPage;
-import com.symund.utilities.ConfigurationReader;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 
 public class LoginStepDefs {
 
