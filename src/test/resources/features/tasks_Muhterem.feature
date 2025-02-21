@@ -20,5 +20,9 @@ Feature: Tasks Module Functionality
     When the user enters "power point" in the Add a task to field and hits the enter
     Then "power point" should be added to the "Presentation" task list
 
-
+  @US-014_tasks_AC03-TC01
+  Scenario: Add a task to the completed tasks list
+    Given "Grooming meeting" exists in the "Symund" task list
+    When the user clicks on the checkbox next to "Grooming meeting" task
+    Then sees the "Grooming meeting" task checked
 
