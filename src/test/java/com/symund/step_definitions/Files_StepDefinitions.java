@@ -109,12 +109,14 @@ public class Files_StepDefinitions {
                 Assert.assertTrue(allNames.contains(nameFolder));
             }
         }
+        filesPage.clickOnDeletFile.click();
+        filesPage.selectFileOrFolderAndDeleting(nameFolder);
     }
 
 
     @When("user is able to click on three dots")
     public void userIsAbleToClickOnThreeDots() {
-        filesPage.seeAllOptionAfterClickOnThreeDotFileOrFolder("Delete folder");
+
     }
 
     @Then("user is able to delete any item")

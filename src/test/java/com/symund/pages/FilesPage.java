@@ -32,6 +32,8 @@ public class FilesPage extends BasePage {
     @FindBy(xpath = "//div[@class='fileActionsMenu popovermenu bubble open menu']/ul/li")
     public List<WebElement> allOptionAfterClickOnThreeDotFileOrFolder;
 
+@FindBy(xpath = "//tbody/tr")
+public List<WebElement> allFileAndFolderRow;
 
     @FindBy(xpath = "//a[@data-action='Delete']")
     public WebElement clickOnDeletFile;
@@ -47,6 +49,12 @@ public class FilesPage extends BasePage {
 //   @FindBy(xpath = "//tbody[@id='fileList'][1]//tr//a[@class='action action-menu permanent']")
 //   public List<WebElement> threeDotForAllFileAndFolder;
 
-
+public void selectFileOrFolderAndDeleting(String nameFolderOrFileExisting){
+    for (WebElement allRowOfFileFolder : allFileAndFolderRow) {
+        if (allRowOfFileFolder.getText().equals(nameFolderOrFileExisting)){
+            threDotForDeletingElement.click();
+        }
+    }
+}
 
 }
