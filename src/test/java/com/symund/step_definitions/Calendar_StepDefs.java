@@ -57,6 +57,7 @@ public class Calendar_StepDefs {
        // calendarPage.clickEventInCalendarTitle(eventTitle);
 
         Assert.assertTrue(calendarPage.goButton.isDisplayed());
+
     }
 
 
