@@ -71,4 +71,21 @@ public class TasksStepDefs {
         BrowserUtils.verifyElementDisplayed(completeCheckbox);
 
     }
+
+    @When("the user clicks on the star icon next to {string} task")
+    public void theUserClicksOnTheStarIconNextTo(String taskName) {
+    WebElement starIcon = Driver.getDriver().findElement(By.xpath("//span[text()='"+taskName+"']" +
+    "/../../following-sibling::div/button/span[@class='icon icon-sprt-bw sprt-task-star']"));
+    BrowserUtils.clickWithWait(By.xpath("//span[text()='"+taskName+"']/../../" +
+    "following-sibling::div/button/span[@class='icon icon-sprt-bw sprt-task-star']"),10);
+
+    }
+
+    @Then("{string} should appear in the list of important tasks")
+    public void shouldAppearInTheListOfImportantTasks(String taskName) {
+    WebElement importantTask=Driver.getDriver().findElement(By.xpath("//span[@title='Important']" +
+    "/../../../../following-sibling::main//span[text()='"+taskName+"']"));
+
+    BrowserUtils.verifyElementDisplayed(importantTask);
+    }
 }
