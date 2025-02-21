@@ -26,14 +26,27 @@ public class FilesPage extends BasePage {
     @FindBy(xpath = "//tbody[@id='fileList'][1]//tr[3]/td[2]//span[@class='icon icon-more']")
     public WebElement threDotForDeletingElement;
 
+    @FindBy(xpath = "//tbody[1]//a[@class='action action-menu permanent']")
+    public List<WebElement> allThreeDot;
+
+    @FindBy(xpath = "//div[@class='fileActionsMenu popovermenu bubble open menu']/ul/li")
+    public List<WebElement> allOptionAfterClickOnThreeDotFileOrFolder;
+
 
     @FindBy(xpath = "//a[@data-action='Delete']")
     public WebElement clickOnDeletFile;
 
     @FindBy(xpath = "//div[@class='newFileMenu popovermenu bubble menu open menu-left']//li[2]")
     public WebElement newFolderlink;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement provideTheNameForFolder;
+
+    @FindBy(xpath = "//input[@class='icon-confirm']")
+    public WebElement sendTheNameFonCreateFolder;
 //   @FindBy(xpath = "//tbody[@id='fileList'][1]//tr//a[@class='action action-menu permanent']")
 //   public List<WebElement> threeDotForAllFileAndFolder;
+
 
 
 }

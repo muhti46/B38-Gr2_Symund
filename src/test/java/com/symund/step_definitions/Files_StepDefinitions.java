@@ -92,20 +92,34 @@ public class Files_StepDefinitions {
     public void userIsAbleToClickOnNewFolder() {
         filesPage.newFolderlink.click();
     }
-    @Then("user is able to see name of folder in that page")
-    public void userIsAbleToSeeNameOfFolderInThatPage() {
 
-    }
+    String nameFolder= "Test1";
+
     @Then("user is able provide the name for folder")
     public void userIsAbleProvideTheNameForFolder() {
+        filesPage.provideTheNameForFolder.sendKeys(nameFolder);
+        filesPage.sendTheNameFonCreateFolder.click();
     }
+
+    @Then("user is able to see name of folder in that page")
+    public void userIsAbleToSeeNameOfFolderInThatPage() {
+        List<String> allNames= BrowserUtils.getElementsText(filesPage.allFilesAndFolderNames);
+        for (String allName : allNames) {
+            if (allName.contains(nameFolder)){
+                Assert.assertTrue(allNames.contains(nameFolder));
+            }
+        }
+    }
+
 
     @When("user is able to click on three dots")
     public void userIsAbleToClickOnThreeDots() {
+        filesPage.seeAllOptionAfterClickOnThreeDotFileOrFolder("Delete folder");
     }
 
     @Then("user is able to delete any item")
     public void userIsAbleToDeleteAnyItem() {
+
     }
 
     @Given("user is able to see total number of files")
