@@ -13,7 +13,7 @@ Feature: Calendar Module Functionality
   Scenario Outline: User can display calendar views
 
 
-    And  the user clicks "calendar" menu
+   # And  the user clicks "calendar" view menu
     And   User clicks "<option>" in the options menu
     Then  User sees current Url contains "<views>"
 
@@ -25,13 +25,14 @@ Feature: Calendar Module Functionality
       | Month  | Month |
 
 
-  @US005_calendar_AC01_TC04
+  @US005_calendar_AC01_TC01
   Scenario: User can create a new event under the calendar module and see
   it on the related day through the Monthly calendar view
 
     When  User clicks + New event button
-    And   user creats event and saves it
-    Then  user sees it on the related day through the Monthly calendar view
+    And   user enters event title "Go GYM" in the title input
+    And   user enters start date "from 02/21/2025 at 9:00 AM" and end date "to 02/21/2025 at 10:00 AM" and click save button
+    Then  user sees "eventTitle" on the related day through the Monthly calendar view
 
 
 
