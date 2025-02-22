@@ -58,6 +58,7 @@ public class DeletedFileStepDefs {
         System.out.println("Step 7: Clicking the three dots icon next to the file.");
         System.out.println("File to delete: " + deletedFilePage.fileName.getText());
         deletedFilePage.threeDotsIcon.click();
+
     }
 
     @And("selects Permanently Delete and confirms")

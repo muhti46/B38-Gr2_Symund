@@ -35,7 +35,7 @@ public class DeletedFilePage extends BasePage {
     public WebElement fileName;
 
     // Three dots icon -first
-    @FindBy(xpath = "(//a[@data-action='menu'])[2]")
+    @FindBy(xpath = "(//a[@data-action='menu'])[2]") ////span[@class='fileactions']//a[2]
     public WebElement threeDotsIcon;
 
     // Delete permanently
