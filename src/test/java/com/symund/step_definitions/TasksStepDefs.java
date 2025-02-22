@@ -88,4 +88,24 @@ public class TasksStepDefs {
 
     BrowserUtils.verifyElementDisplayed(importantTask);
     }
+
+    @Given("there are uncompleted tasks in the {string} task list")
+    public void thereAreUncompletedTasksInTheTaskList(String listName) {
+    tasksPage.clickOnSelectedList(listName);
+    tasksPage.verifyElementsDisplayed(listName);
+
+    }
+
+    @When("the user navigates to the {string} tab")
+    public void theUserNavigatesToTheTab(String navigateTo) {
+    BrowserUtils.clickWithWait(By.xpath("//span[@title='"+navigateTo+"']"),2);
+
+    }
+
+    @Then("they should see a number indicating the total count of uncompleted tasks next to {string}")
+    public void theyShouldSeeANumberIndicatingTheTotalCountOfUncompletedTasksNextTo(String catogoryName) {
+    BrowserUtils.waitForPresenceOfElement(By.xpath("//span[@title='" + catogoryName + "']/../following-sibling::div/div[@class='app-navigation-entry__counter']"),10);
+    tasksPage.verifyTheNumberOfListCatogory(catogoryName);
+
+    }
 }
