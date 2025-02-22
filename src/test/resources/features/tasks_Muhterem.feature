@@ -1,3 +1,4 @@
+@US014_tasks
 Feature: Tasks Module Functionality
   As a user, I want to manage tasks effectively by creating task lists, adding tasks,
   marking tasks as completed or important, and viewing the count of uncompleted tasks.
@@ -8,27 +9,32 @@ Feature: Tasks Module Functionality
     And the user clicks "Tasks" menu
 
   @US-014_tasks_AC01-TC01
-  Scenario: Create a new list of tasks
+  Scenario Outline: Create a new list of tasks
     When the user clicks on "Add List..."
-    And enters "lunch list" as the name of the new list and hits the enter
-    Then a new task list named "lunch list" should be created and displayed in the sidebar
+    And enters "<listName>" as the name of the new list and hits the enter
+    Then a new task list named "<listName>" should be created and displayed in the sidebar
+    Examples:
+      | listName        |
+      | Marketing Tasks |
+      | Project Tasks   |
+      | Private Tasks   |
 
   @US-014_tasks_AC02-TC01
   Scenario Outline: Create a new task
-    Given the user has selected the "lunch list" list
-    When the user enters "<meal>" in the Add a task to field and hits the enter
-    Then "<meal>" should be added to the "lunch list" task list
+    Given the user has selected the "<listName>" list
+    When the user enters "<TaskName>" in the Add a task to field and hits the enter
+    Then "<TaskName>" should be added to the "<listName>" task list
     Examples:
-      | meal  |
-      | soup |
-      | kebap  |
-      | sweet |
+      | listName        | TaskName                  |
+      | Marketing Tasks | Meeting with stakeholders |
+      | Project Tasks   | Planing                   |
+      | Private Tasks   | Walking alone             |
 
   @US-014_tasks_AC03-TC01
   Scenario: Add a task to the completed tasks list
-    Given "Grooming meeting" exists in the "Symund" task list
-    When the user clicks on the checkbox next to "Grooming meeting" task
-    Then sees the "Grooming meeting" task checked
+    Given "Planing" exists in the "Project Tasks" task list
+    When the user clicks on the checkbox next to "Planing" task
+    Then sees the "Planing" task checked
 
   @US-014_tasks_AC04-TC01
   Scenario: Add a task to the important tasks list
