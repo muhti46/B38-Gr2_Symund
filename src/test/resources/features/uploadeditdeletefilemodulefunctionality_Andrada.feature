@@ -1,3 +1,4 @@
+@FilesFeatures
 Feature:Upload/Edit/Delete File Module Functionality
   As a user, I should be able to upload a file, move or delete any
   selected file under the Files module
@@ -29,4 +30,4 @@ Feature:Upload/Edit/Delete File Module Functionality
   @US-JIRA-ID_tasks_AC04-TC01
   Scenario: User can see the total number of files and folders under the files list table
     Given user is able to see total number of files
-    Then user is able to see total numer of folders
+    Then user is able to see total number of folders

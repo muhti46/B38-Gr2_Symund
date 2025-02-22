@@ -26,15 +26,6 @@ public class FilesPage extends BasePage {
     @FindBy(xpath = "//tr//span[@class='innernametext']")
     public List<WebElement> allFilesAndFolderNames;
 
-    @FindBy(xpath = "//tbody[@id='fileList'][1]//tr[3]/td[2]//span[@class='icon icon-more']")
-    public WebElement threDotForDeletingElement;
-
-    @FindBy(xpath = "//tbody[1]//a[@class='action action-menu permanent']")
-    public List<WebElement> allThreeDot;
-
-    @FindBy(xpath = "//div[@class='fileActionsMenu popovermenu bubble open menu']/ul/li")
-    public List<WebElement> allOptionAfterClickOnThreeDotFileOrFolder;
-
 
     @FindBy(xpath = "//a[@data-action='Delete']")
     public WebElement clickOnDeletFile;
@@ -50,6 +41,9 @@ public class FilesPage extends BasePage {
 //   @FindBy(xpath = "//tbody[@id='fileList'][1]//tr//a[@class='action action-menu permanent']")
 //   public List<WebElement> threeDotForAllFileAndFolder;
 
+    @FindBy(xpath = "//span[@class='info']")
+    public WebElement totalNumberOfFileAndFolder;
+
 public void seeAllFilesAndFolderNames(String nameOfFolder){
     List<String> allNames= BrowserUtils.getElementsText(allFilesAndFolderNames);
     for (String allName : allNames) {
@@ -63,9 +57,21 @@ public void selectAnyFolderOrFileAndClikOnDot(String nameOfFileOrFolderWhichYouW
  WebElement allFileAndFolder  =Driver.getDriver().findElement
          (By.xpath("//tr//span[contains(text(),'"+nameOfFileOrFolderWhichYouWantToDelet+"')]/../..//span[@class='icon icon-more']"));
  allFileAndFolder.click();
-
-
 }
+
+public void totalNumberOfFile(){
+   String allFilesAndFolderName = totalNumberOfFileAndFolder.getText();
+    String numberOfFile= allFilesAndFolderName.substring(allFilesAndFolderName.lastIndexOf("d")+1, allFilesAndFolderName.lastIndexOf("e")+1);
+    System.out.println("numberOdFiles = " + numberOfFile);
+}
+
+public void totalNumberOfFolders(){
+    String allFilesAndFolderName =totalNumberOfFileAndFolder.getText();
+    String numberOfFolder= allFilesAndFolderName.substring(0, allFilesAndFolderName.indexOf("s")+1);
+    System.out.println("numberOfFolder = " + numberOfFolder);
+}
+
+
 
 
 }
