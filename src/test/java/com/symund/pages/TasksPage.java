@@ -1,8 +1,10 @@
 package com.symund.pages;
+import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.List;
@@ -34,6 +36,9 @@ public class TasksPage extends BasePage {
     @FindBy(xpath = "//input[@id='target']")
     public WebElement addingTaskBox;
 
+    @FindBy(xpath = "//span[@title='Current']/../following-sibling::div/div[@class='app-navigation-entry__counter']")
+    public WebElement totalOfUncompletedTask;
+
     /**
      * Verifies if a newly created task list name is correctly displayed in the sidebar.
      * It finds the created task list element by its title and asserts if the displayed name matches the expected name.
@@ -48,19 +53,21 @@ public class TasksPage extends BasePage {
     /**
      * Clicks on the navigation buttons in the sidebar, such as "Important", "All", "Current", or "Completed".
      * This method is used to navigate to different task views.
+     *
      * @param navigationButton The name of the navigation button to click (e.g., "Important", "All", "Current", "Completed").
      */
     public void clickOnNavigationButtons(String navigationButton) {
-        WebElement navigationButtons = Driver.getDriver().findElement(By.xpath("//a[@href='#/collections/"+navigationButton.toLowerCase()+"']"));
+        WebElement navigationButtons = Driver.getDriver().findElement(By.xpath("//a[@href='#/collections/" + navigationButton.toLowerCase() + "']"));
         navigationButtons.click();
     }
 
     /**
      * Clicks on a specific task list in the sidebar to select and view tasks within that list.
+     *
      * @param nameOfTheList The name of the task list to be selected and clicked.
      */
     public void clickOnSelectedList(String nameOfTheList) {
-        WebElement selectedList=Driver.getDriver().findElement(By.xpath("//span[@title='"+nameOfTheList+"']"));
+        WebElement selectedList = Driver.getDriver().findElement(By.xpath("//span[@title='" + nameOfTheList + "']"));
         selectedList.click();
     }
 
@@ -68,6 +75,7 @@ public class TasksPage extends BasePage {
      * Adds a new task to the currently selected task list.
      * It enters the given task name into the "Add a task to"
      * input field and presses the ENTER key to submit.
+     *
      * @param taskName The name of the task to be added.
      */
     public void addingTask(String taskName) {
@@ -78,6 +86,7 @@ public class TasksPage extends BasePage {
      * Verifies if a specific task is present in a given task list.
      * It selects the task list, then iterates through the displayed tasks in the
      * list and asserts if the target task name is found.
+     *
      * @param taskName The name of the task to verify.
      * @param listName The name of the task list where the task should be present.
      */
@@ -96,4 +105,37 @@ public class TasksPage extends BasePage {
         Assert.assertTrue("Task '" + taskName + "' was not found in the '" + listName + "' list", taskFound);
     }
 
+
+    public void verifyElementsDisplayed(String listName) {
+        List<WebElement> uncompletedTasks = Driver.getDriver().findElements(By.xpath("//span[@title='Symund']/../../../../../following-sibling::main//ol//div/span"));
+
+        if (uncompletedTasks.isEmpty()) {
+            Assert.fail(listName + " list is empty");
+            return;
+        }
+        for (WebElement each : uncompletedTasks) {
+
+            Assert.assertTrue("'" + listName + "' tasks are not visible: " + each.getText(), each.isDisplayed());
+        }
+    }
+
+    public void verifyTheNumberOfListCatogory(String catogoryName) {
+        WebElement theNumberOfTask = Driver.getDriver().findElement(By.xpath("//span[@title='" +
+        catogoryName + "']/../following-sibling::div/div[@class='app-navigation-entry__counter']"));
+        String taskCountText = theNumberOfTask.getText();
+
+        if(theNumberOfTask.getText().isEmpty()){
+            Assert.fail(catogoryName + " list is empty");
+            return;
+        }
+
+         try {
+             int taskCount = Integer.parseInt(taskCountText);
+             Assert.assertTrue("'" + catogoryName + "' kategorisindeki görev sayısı 0'dan büyük olmalı.", taskCount > 0);
+         } catch (NumberFormatException e) {
+             Assert.fail("'" + catogoryName + "' kategorisindeki görev sayısı sayıya dönüştürülemedi: " + taskCountText);
+         }
+
+
+    }
 }
