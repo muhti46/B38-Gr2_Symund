@@ -9,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+
 import java.util.List;
 
 
@@ -45,6 +46,7 @@ public class Files_StepDefinitions {
     }
 
     String expectedFileName;
+
     @When("user is on the File page muss be able to upload a file")
     public void user_is_on_the_file_page_muss_be_able_to_upload_a_file() {
         BrowserUtils.sleep(4);
@@ -62,15 +64,15 @@ public class Files_StepDefinitions {
         System.out.println("basePath = " + basePath);
         System.out.println("commonPath = " + commonPath);
 
-        expectedFileName= filePath.substring(filePath.lastIndexOf("\\")+1,filePath.lastIndexOf("."));
+        expectedFileName = filePath.substring(filePath.lastIndexOf("\\") + 1, filePath.lastIndexOf("."));
         System.out.println("expectedFileName = " + expectedFileName);
     }
 
     @Then("user is able to see upload file in Files page")
     public void user_is_able_to_see_upload_file_in_files_page() {
-   List<String> allNames= BrowserUtils.getElementsText(filesPage.allFilesAndFolderNames);
+        List<String> allNames = BrowserUtils.getElementsText(filesPage.allFilesAndFolderNames);
         for (String allName : allNames) {
-            if (allName.contains(expectedFileName)){
+            if (allName.contains(expectedFileName)) {
                 Assert.assertTrue(allNames.contains(expectedFileName));
             }
         }
@@ -81,11 +83,8 @@ public class Files_StepDefinitions {
 
         //click on delete File
         filesPage.clickOnDeletFile.click();
-
         BrowserUtils.sleep(5);
     }
-
-
 
 
     @When("user is able to click on New Folder")
@@ -93,24 +92,22 @@ public class Files_StepDefinitions {
         filesPage.newFolderlink.click();
     }
 
-    String nameFolder= "Test1";
+    String nameFolder = "Test1";
 
     @Then("user is able provide the name for folder")
     public void userIsAbleProvideTheNameForFolder() {
         filesPage.provideTheNameForFolder.sendKeys(nameFolder);
         filesPage.sendTheNameFonCreateFolder.click();
+        BrowserUtils.sleep(5);
     }
 
     @Then("user is able to see name of folder in that page")
     public void userIsAbleToSeeNameOfFolderInThatPage() {
-        List<String> allNames= BrowserUtils.getElementsText(filesPage.allFilesAndFolderNames);
-        for (String allName : allNames) {
-            if (allName.contains(nameFolder)){
-                Assert.assertTrue(allNames.contains(nameFolder));
-            }
-        }
+        filesPage.seeAllFilesAndFolderNames(nameFolder);
+        BrowserUtils.sleep(5);
+        filesPage.selectAnyFolderOrFileAndClikOnDot(nameFolder);
+        BrowserUtils.sleep(5);
         filesPage.clickOnDeletFile.click();
-        filesPage.selectFileOrFolderAndDeleting(nameFolder);
     }
 
 
@@ -121,7 +118,8 @@ public class Files_StepDefinitions {
 
     @Then("user is able to delete any item")
     public void userIsAbleToDeleteAnyItem() {
-
+        filesPage.clickOnDeletFile.click();
+        BrowserUtils.sleep(5);
     }
 
     @Given("user is able to see total number of files")
