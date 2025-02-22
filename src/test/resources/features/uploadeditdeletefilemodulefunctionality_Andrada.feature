@@ -15,9 +15,10 @@ Feature:Upload/Edit/Delete File Module Functionality
     When user is on the File page muss be able to upload a file
     Then user is able to see upload file in Files page
 
+
   @US-JIRA-ID_tasks_AC02-TC01
-  Scenario: User can create a new folder
-    When user is able to click on + icon
+    Scenario: user is able to create a New Folder
+     When user is able to click on + icon
     When user is able to click on New Folder
     Then user is able provide the name for folder
     Then user is able to see name of folder in that page
