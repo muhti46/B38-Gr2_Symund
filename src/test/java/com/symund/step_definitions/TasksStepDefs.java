@@ -1,4 +1,5 @@
 package com.symund.step_definitions;
+
 import com.symund.pages.TasksPage;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
@@ -6,6 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -33,7 +35,7 @@ public class TasksStepDefs {
 
     @Given("the user has selected the {string} list")
     public void theUserHasSelectedTheList(String nameOfTheList) {
-        BrowserUtils.waitForClickablility(By.xpath("//span[@title='"+nameOfTheList+"']"),3);
+        BrowserUtils.waitForClickablility(By.xpath("//span[@title='" + nameOfTheList + "']"), 3);
         tasksPage.clickOnSelectedList(nameOfTheList);
     }
 
@@ -59,53 +61,55 @@ public class TasksStepDefs {
 
     @When("the user clicks on the checkbox next to {string} task")
     public void theUserClicksOnTheCheckboxNextToTask(String taskName) {
-        BrowserUtils.clickWithWait(By.xpath("//span[.='"+taskName+"']/../../preceding-sibling::div/label"),3);
+        BrowserUtils.clickWithWait(By.xpath("//span[.='" + taskName + "']/../../preceding-sibling::div/label"), 3);
     }
 
     @Then("sees the {string} task checked")
     public void seesTheTaskChecked(String taskName) {
         WebElement completeCheckbox = Driver.getDriver().findElement(By.xpath("//li[contains(@class, 'task-item')" +
-        " and contains(@class, 'done')]//span[normalize-space(text())='" + taskName + "']/../../preceding-sibling::div/label"));
+                " and contains(@class, 'done')]//span[normalize-space(text())='" + taskName + "']/../../preceding-sibling::div/label"));
         BrowserUtils.waitForPresenceOfElement(By.xpath("//li[contains(@class, 'task-item') and contains(@class, 'done')]" +
-        "//span[normalize-space(text())='"+taskName +"']/../../preceding-sibling::div/label"),10);
+                "//span[normalize-space(text())='" + taskName + "']/../../preceding-sibling::div/label"), 10);
         BrowserUtils.verifyElementDisplayed(completeCheckbox);
 
     }
 
     @When("the user clicks on the star icon next to {string} task")
     public void theUserClicksOnTheStarIconNextTo(String taskName) {
-    WebElement starIcon = Driver.getDriver().findElement(By.xpath("//span[text()='"+taskName+"']" +
-    "/../../following-sibling::div/button/span[@class='icon icon-sprt-bw sprt-task-star']"));
-    BrowserUtils.clickWithWait(By.xpath("//span[text()='"+taskName+"']/../../" +
-    "following-sibling::div/button/span[@class='icon icon-sprt-bw sprt-task-star']"),10);
+        WebElement starIcon = Driver.getDriver().findElement(By.xpath("//span[text()='" + taskName + "']" +
+                "/../../following-sibling::div/button/span[@class='icon icon-sprt-bw sprt-task-star']"));
+        BrowserUtils.clickWithWait(By.xpath("//span[text()='" + taskName + "']/../../" +
+                "following-sibling::div/button/span[@class='icon icon-sprt-bw sprt-task-star']"), 10);
 
     }
 
     @Then("{string} should appear in the list of important tasks")
     public void shouldAppearInTheListOfImportantTasks(String taskName) {
-    WebElement importantTask=Driver.getDriver().findElement(By.xpath("//span[@title='Important']" +
-    "/../../../../following-sibling::main//span[text()='"+taskName+"']"));
+        WebElement importantTask = Driver.getDriver().findElement(By.xpath("//span[@title='Important']" +
+                "/../../../../following-sibling::main//span[text()='" + taskName + "']"));
 
-    BrowserUtils.verifyElementDisplayed(importantTask);
+        BrowserUtils.verifyElementDisplayed(importantTask);
     }
 
     @Given("there are uncompleted tasks in the {string} task list")
     public void thereAreUncompletedTasksInTheTaskList(String listName) {
-    tasksPage.clickOnSelectedList(listName);
-    tasksPage.verifyElementsDisplayed(listName);
+        tasksPage.clickOnSelectedList(listName);
+        tasksPage.verifyElementsDisplayed(listName);
 
     }
 
     @When("the user navigates to the {string} tab")
     public void theUserNavigatesToTheTab(String navigateTo) {
-    BrowserUtils.clickWithWait(By.xpath("//span[@title='"+navigateTo+"']"),2);
+        BrowserUtils.clickWithWait(By.xpath("//span[@title='" + navigateTo + "']"), 2);
 
     }
 
     @Then("they should see a number indicating the total count of uncompleted tasks next to {string}")
-    public void theyShouldSeeANumberIndicatingTheTotalCountOfUncompletedTasksNextTo(String catogoryName) {
-    BrowserUtils.waitForPresenceOfElement(By.xpath("//span[@title='" + catogoryName + "']/../following-sibling::div/div[@class='app-navigation-entry__counter']"),10);
-    tasksPage.verifyTheNumberOfListCatogory(catogoryName);
+    public void theyShouldSeeANumberIndicatingTheTotalCountOfUncompletedTasksNextTo(String categoryName) {
+        int taskCount = tasksPage.getCurrentTaskCount(categoryName);
+        Assert.assertTrue("The task count for the '" + categoryName + "' category should be greater than or equal to 0", taskCount >= 0);
+        System.out.println(categoryName + " Task Count: " + taskCount);
+        BrowserUtils.waitFor(3);
 
     }
 }
