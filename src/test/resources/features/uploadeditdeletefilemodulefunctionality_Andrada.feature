@@ -1,3 +1,4 @@
+@FilesFeatures
 Feature:Upload/Edit/Delete File Module Functionality
   As a user, I should be able to upload a file, move or delete any
   selected file under the Files module
@@ -14,9 +15,10 @@ Feature:Upload/Edit/Delete File Module Functionality
     When user is on the File page muss be able to upload a file
     Then user is able to see upload file in Files page
 
+
   @US-JIRA-ID_tasks_AC02-TC01
-  Scenario: User can create a new folder
-    When user is able to click on + icon
+    Scenario: user is able to create a New Folder
+     When user is able to click on + icon
     When user is able to click on New Folder
     Then user is able provide the name for folder
     Then user is able to see name of folder in that page
@@ -29,4 +31,4 @@ Feature:Upload/Edit/Delete File Module Functionality
   @US-JIRA-ID_tasks_AC04-TC01
   Scenario: User can see the total number of files and folders under the files list table
     Given user is able to see total number of files
-    Then user is able to see total numer of folders
+    Then user is able to see total number of folders
