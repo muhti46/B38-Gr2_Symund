@@ -14,6 +14,7 @@ Feature:Upload/Edit/Delete File Module Functionality
     Then user is able to click on + icon
     When user is on the File page muss be able to upload a file
     Then user is able to see upload file in Files page
+    Then user is able to see deleted File in Deleted Files page
 
 
   @US-JIRA-ID_tasks_AC02-TC01

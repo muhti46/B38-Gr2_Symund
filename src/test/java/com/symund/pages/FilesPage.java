@@ -72,7 +72,10 @@ public void totalNumberOfFolders(){
 }
 
 
-
+    public void seeDeletedFileOrFolder(String fileOrFolderName){
+        String textFromFile =  Driver.getDriver().findElement(By.xpath("//table//span[.='"+fileOrFolderName+"']")).getText();
+        Assert.assertTrue(textFromFile.equals(fileOrFolderName));
+    }
 
 }
 

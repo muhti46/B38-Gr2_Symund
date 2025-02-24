@@ -84,6 +84,12 @@ public class FilesStepDefinitions {
         filesPage.clickOnDeletFile.click();
     }
 
+    @Then("user is able to see deleted File in Deleted Files page")
+    public void userIsAbleToSeeDeletedFileInDeletedFilesPage() {
+filesPage.seeDeletedFileOrFolder(expectedFileName);
+    }
+
+
     @When("user is able to click on New Folder")
     public void userIsAbleToClickOnNewFolder() {
         filesPage.newFolderlink.click();
@@ -131,4 +137,6 @@ public class FilesStepDefinitions {
     public void userIsAbleToSeeTotalNumberOfFolders() {
         filesPage.totalNumberOfFolders();
     }
+
+
 }
