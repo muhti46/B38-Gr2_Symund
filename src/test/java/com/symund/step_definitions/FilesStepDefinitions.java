@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import java.util.List;
 
-public class Files_StepDefinitions {
+public class FilesStepDefinitions {
     FilesPage filesPage = new FilesPage();
     LoginPage loginPage = new LoginPage();
 
