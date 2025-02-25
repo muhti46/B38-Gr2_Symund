@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import java.util.List;
 
-public class Files_StepDefinitions {
+public class FilesStepDefinitions {
     FilesPage filesPage = new FilesPage();
     LoginPage loginPage = new LoginPage();
 
@@ -84,6 +84,12 @@ public class Files_StepDefinitions {
         filesPage.clickOnDeletFile.click();
     }
 
+    @Then("user is able to see deleted File in Deleted Files page")
+    public void userIsAbleToSeeDeletedFileInDeletedFilesPage() {
+filesPage.seeDeletedFileOrFolder(expectedFileName);
+    }
+
+
     @When("user is able to click on New Folder")
     public void userIsAbleToClickOnNewFolder() {
         filesPage.newFolderlink.click();
@@ -131,4 +137,6 @@ public class Files_StepDefinitions {
     public void userIsAbleToSeeTotalNumberOfFolders() {
         filesPage.totalNumberOfFolders();
     }
+
+
 }

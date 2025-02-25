@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
 import java.util.List;
 
 public class FilesPage extends BasePage {
@@ -38,10 +37,6 @@ public class FilesPage extends BasePage {
     public List<WebElement> allFilesAndFolderNames;
 
 
-    @FindBy(xpath = "//tbody[@id='fileList'][1]//tr[3]/td[2]//span[@class='icon icon-more']")
-    public WebElement threDotForDeletingElement;
-
-
     @FindBy(xpath = "//a[@data-action='Delete']")
     public WebElement clickOnDeletFile;
 
@@ -53,6 +48,8 @@ public class FilesPage extends BasePage {
 
     @FindBy(xpath = "//input[@class='icon-confirm']")
     public WebElement sendTheNameFonCreateFolder;
+//   @FindBy(xpath = "//tbody[@id='fileList'][1]//tr//a[@class='action action-menu permanent']")
+//   public List<WebElement> threeDotForAllFileAndFolder;
 
     @FindBy(xpath = "//span[@class='info']")
     public WebElement totalNumberOfFileAndFolder;
@@ -78,7 +75,6 @@ public void totalNumberOfFile(){
     System.out.println("numberOdFiles = " + numberOfFile);
 }
 
-
 public void totalNumberOfFolders(){
     String allFilesAndFolderName =totalNumberOfFileAndFolder.getText();
     String numberOfFolder= allFilesAndFolderName.substring(0, allFilesAndFolderName.indexOf("s")+1);
@@ -86,7 +82,10 @@ public void totalNumberOfFolders(){
 }
 
 
-
+    public void seeDeletedFileOrFolder(String fileOrFolderName){
+        String textFromFile =  Driver.getDriver().findElement(By.xpath("//table//span[.='"+fileOrFolderName+"']")).getText();
+        Assert.assertTrue(textFromFile.equals(fileOrFolderName));
+    }
 
 }
 
