@@ -1,4 +1,5 @@
 package com.symund.step_definitions;
+
 import com.symund.pages.ContactsPage;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
@@ -9,47 +10,45 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 public class ContactsStepDefs {
 
     ContactsPage contactsPage = new ContactsPage();
 
     @When("The user clicks on the New contacts button")
     public void the_user_clicks_on_the_button() {
-        BrowserUtils.waitForClickablility(contactsPage.newContactsButton, 5);
-        contactsPage.newContactsButton.click();
-        BrowserUtils.waitForClickablility(contactsPage.newContactsAvatar, 5);
-        contactsPage.newContactsAvatar.click();
-        BrowserUtils.waitForClickablility(contactsPage.fullNameField, 5);
-        contactsPage.fullNameField.click();
+        BrowserUtils.waitForClickablility(contactsPage.newContactsButton, 10);
+        BrowserUtils.clickWithJS(contactsPage.newContactsButton);
+
+        BrowserUtils.waitFor(2);
 
     }
 
-    @And("the user creates a new contact as name {string} as Phone number {string} and email {string}")
-    public void theUserCreatesANewContactAsNameAsPhoneNumberAndEmail(String fullName, String phoneNumber, String email) {
-        contactsPage.createContact(fullName, phoneNumber, email);
-        contactsPage.clickAContactPerson(fullName);
-        BrowserUtils.waitFor(2);
+    @And("the user creates a new contact as name {string}")
+    public void theUserCreatesANewContactAsNameAsPhoneNumberAndEmail(String fullName) {
+        contactsPage.fullNameField.click();
+        contactsPage.fullNameField.clear();
+        contactsPage.createContact(fullName);
 
     }
 
     @Then("the contact {string} should appear in the contacts list")
     public void theContactShouldAppearInTheContactsList(String fullName) {
 
-        BrowserUtils.waitForClickablility(contactsPage.allContactsButton, 5);
+        BrowserUtils.waitForClickablility(contactsPage.allContactsButton, 10);
         contactsPage.allContactsButton.click();
 
+        contactsPage.printAllContacts();
         BrowserUtils.waitForVisibility(By.xpath("//div[contains(@id,'fmNvbnRhY3')]/div[@class='app-content-list-item-line-one'][contains(.,'" + fullName + "')]"), 15);
         Assert.assertTrue(contactsPage.isContactVisible(fullName));
 
-        contactsPage.clickAContactPerson(fullName);
-
-        contactsPage.printAllContacts(fullName);
     }
 
-    @Given("there are {int} existing contacts")
+    @Given("there are {int} existing contact")
     public void thereAreExistingContacts(int expectedContactCount) {
         BrowserUtils.waitForClickablility(contactsPage.allContactsButton, 5);
         contactsPage.allContactsButton.click();
@@ -65,27 +64,23 @@ public class ContactsStepDefs {
 
     @When("the user clicks on the All contacts tab")
     public void theUserClicksOnTheTab() {
-
-        contactsPage.allContactsButton.click();
         BrowserUtils.waitForClickablility(contactsPage.allContactsButton, 5);
+        contactsPage.allContactsButton.click();
 
     }
 
-    @Then("all contacts should be listed:")
-    public void allShouldBeListed(List<String> expectedNames) {
+    @Then("{string} should be listed:")
+    public void allShouldBeListed(String expectedName) {
         List<String> actualContactNames = new ArrayList<>();
         for (WebElement contact : contactsPage.allContacts) {
             actualContactNames.add(contact.getText());
         }
-
-        for (String expectedName : expectedNames) {
             Assert.assertTrue("Contact '" + expectedName + "' is not displayed in the list",
                     actualContactNames.contains(expectedName));
         }
-    }
 
-    @And("all the contact's should appear in the in the middle column:")
-    public void allTheContactSShouldAppearInTheInTheMiddleColumn(List<String> expectedContacts) {
+    @And("{string} should appear in the in the middle column:")
+    public void allTheContactSShouldAppearInTheInTheMiddleColumn(String expectedContact) {
         BrowserUtils.waitFor(2);
 
         List<String> visibleContacts = new ArrayList<>();
@@ -95,15 +90,11 @@ public class ContactsStepDefs {
             }
         }
 
-        for (String expectedcontact : expectedContacts) {
-            Assert.assertTrue("Contact '" + expectedcontact + "' is not visible in the middle column",
-                    visibleContacts.contains(expectedcontact));
+        Assert.assertTrue("Contact '" + expectedContact + "' is not visible in the middle column",
+                visibleContacts.contains(expectedContact));
+
+        System.out.println("Actual Contact = " + visibleContacts);
         }
-        System.out.println("All Contacts:");
-        for (WebElement contact : contactsPage.allContacts) {
-            System.out.println(contact.getText());
-        }
-    }
 
     @And("the All contacts tab should display {int} total contacts")
     public void theTabShouldDisplayTotalContacts(int totalContacts) {
@@ -164,6 +155,35 @@ public class ContactsStepDefs {
                 By.xpath("//div[@class= 'app-content-list-item-line-one'][contains(.,'" + contactName + "')]/preceding-sibling::div/img"));
 
         Assert.assertTrue("The profile picture has not been uploaded.", profilePicture.isDisplayed());
+    }
+
+
+    @When("the user clicks {string} contact")
+    public void theUserClicksContact(String contactName) {
+        contactsPage.clickAContactPerson(contactName);
+    }
+
+    @Then("the user clicks three dot sign sees Delete option")
+    public void theUserClicksThreeDotSignSeesOption() {
+        BrowserUtils.waitForClickablility(contactsPage.threeDotButton, 15);
+        BrowserUtils.clickWithJS(contactsPage.threeDotButton);
+
+    }
+
+    @Then("the user clicks Delete option")
+    public void theUserClicksOption() {
+        BrowserUtils.waitForPageToLoad(15);
+        BrowserUtils.waitForClickablility(contactsPage.deleteContactButton, 15);
+        BrowserUtils.clickWithJS(contactsPage.deleteContactButton);
+
+    }
+
+    @Then("the contact {string} should be removed from the list")
+    public void theContactShouldBeRemovedFromTheList(String contactName) {
+        BrowserUtils.waitForPageToLoad(15);
+        BrowserUtils.waitForInvisibilityOf(contactsPage.deleteContactButton);
+        Assert.assertFalse("Contact has not been deleted", contactsPage.isContactVisible(contactName));
+
     }
 
 }
