@@ -8,43 +8,30 @@ Feature: US-003 Contacts Module Functionality
     When the user logged in with username as "Employee82" and password as "Employee123"
     And the user clicks "Contacts" menu
 
-  Scenario Outline: Create a new contact
+  Scenario: Create a new contact
     When The user clicks on the New contacts button
-    And the user creates a new contact as name "<fullName>" as Phone number "<phone>" and email "<email>"
-    Then the contact "<fullName>" should appear in the contacts list
-
-    Examples:
-      | fullName   | phone    | email               |
-      | Harry Kane | 555-1234 | harry.kane@test.com |
-      | Adam Smith | 555-2345 | adam.smith@test.com |
-      | John Doe   | 555-3456 | john.doe@test.com   |
-      | Mike Braun | 555-4567 | mike.braun@test.com |
+    And the user creates a new contact as name "Harry Kane"
+    Then the contact "Harry Kane" should appear in the contacts list
 
   Scenario: Verify contacts list and count
-    Given there are 4 existing contacts
+    Given there are 1 existing contact
     When the user clicks on the All contacts tab
-    Then all contacts should be listed:
-      | Ali   |
-      | Belly |
-      | Kerry |
-      | Veli  |
+    Then "Harry Kane" should be listed:
+    And "Harry Kane" should appear in the in the middle column:
+    And the All contacts tab should display 1 total contacts
 
-    And all the contact's should appear in the in the middle column:
-      | Ali   |
-      | Belly |
-      | Kerry |
-      | Veli  |
-
-    And the All contacts tab should display 4 total contacts
-
-  @edit-contact-picture
   Scenario: Change contact profile picture
-    Given the contact "Veli" exists in the All contacts list
-    When the user clicks "Veli" profile and clicks on Choose from Files option for profile picture
-    Then the user clicks Talk file and choose "profile.jpg"
+    Given the contact "Harry Kane" exists in the All contacts list
+    When the user clicks "Harry Kane" profile and clicks on Choose from Files option for profile picture
+    Then the user clicks Talk file and choose "images.jpg"
     And the user clicks clicks on Choose button
-    Then the profile picture for "Veli" should be updated
+    Then the profile picture for "Harry Kane" should be updated
 
-
+  Scenario: Delete a contact
+    Given the contact "Harry Kane" exists in the All contacts list
+    When the user clicks "Harry Kane" contact
+    Then the user clicks three dot sign sees Delete option
+    Then the user clicks Delete option
+    Then the contact "Harry Kane" should be removed from the list
 
 
