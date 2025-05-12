@@ -5,8 +5,8 @@ Feature: Deleted Files Tab Functionality
   As a user, I should be able to see all deleted files and delete or restore them permanently under the Deleted Files tab.
 
   # Background: This section sets up common steps to be executed before each scenario.
-  Background:
-    Given the user is logged into the application with the username "Employee92" and password "Employee123"
+  Background:User is already in the log in page
+    When the user logged in with username as "Employee92" and password as "Employee123"
 
   # Scenario: This is the first test case, verifying sorting from newest to oldest.
   @US007_DeletedFileTab_AC01-TC01
